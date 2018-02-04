@@ -1,28 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//---------------------------------------------------------------------------
+// FILE NAME: mainwindow.xaml.cs
+// DATE:      Sunday, February 4, 2018   9 am
+// WEATHER:   Fair, Temp 57°F, Pressure 30.14",
+//            Humidity 74%, Wind calm
+// Programmer's Cuvee XLIV
+// Copyright (C) 2018 William E. Blum.  All rights reserved.
+//---------------------------------------------------------------------------
+
+using System;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Utf16Conv
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
 	public partial class MainWindow : Window
 	{
 		public MainWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void ChooseDirectory_OnClick(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				throw new NotImplementedException();
+			}
+			catch (Exception x)
+			{
+				MessageBox.Show(x.Message, Title);
+			}
+		}
+
+		private void Exit_OnClick(object sender, RoutedEventArgs e)
+		{
+			Close();
 		}
 	}
 }
