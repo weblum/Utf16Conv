@@ -14,9 +14,12 @@ namespace Utf16Conv
 {
 	public partial class MainWindow : Window
 	{
+		private readonly FileListViewModel vm = new FileListViewModel();
+
 		public MainWindow()
 		{
 			InitializeComponent();
+			DataContext = vm;
 		}
 
 		private void ChooseDirectory_OnClick(object sender, RoutedEventArgs e)
@@ -26,7 +29,7 @@ namespace Utf16Conv
 				string directoryPath = UserPath.GetDirectory();
 				if (directoryPath == null)
 					return;
-				MessageBox.Show($"The path you chose: {directoryPath}", Title);
+				vm.Load(directoryPath);
 			}
 			catch (Exception x)
 			{

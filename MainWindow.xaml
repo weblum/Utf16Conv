@@ -31,9 +31,9 @@
             </MenuItem>
         </Menu>
         
-        <DataGrid Grid.Row="1" Grid.Column="0">
-
-        </DataGrid>
+        <DataGrid Grid.Row="1" Grid.Column="0"
+                  ItemsSource="{Binding}"/>
 
     </Grid>
 </Window>
+
