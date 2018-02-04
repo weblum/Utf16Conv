@@ -114,4 +114,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DirectoryPrompt" xml:space="preserve">
+    <value>Choose a directory that contains the files you may want to convert.</value>
+    <comment>The prompt at the top of the folder browser dialog.</comment>
+  </data>
 </root>

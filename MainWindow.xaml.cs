@@ -23,7 +23,10 @@ namespace Utf16Conv
 		{
 			try
 			{
-				throw new NotImplementedException();
+				string directoryPath = UserPath.GetDirectory();
+				if (directoryPath == null)
+					return;
+				MessageBox.Show($"The path you chose: {directoryPath}", Title);
 			}
 			catch (Exception x)
 			{
