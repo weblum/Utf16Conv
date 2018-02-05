@@ -12,7 +12,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Utf16Conv"
         mc:Ignorable="d"
         Title="File Encodings" Height="350" Width="525">
     <Grid Margin="8">
@@ -25,14 +24,22 @@
             <MenuItem Header="_File">
                 <MenuItem Header="Choose _Directory"
                           Click="ChooseDirectory_OnClick"/>
+                <MenuItem Header="_Convert Files"
+                          Click="ConvertFiles_OnClick"/>
                 <Separator/>
                 <MenuItem Header="E_xit"
                           Click="Exit_OnClick"/>
             </MenuItem>
         </Menu>
         
-        <DataGrid Grid.Row="1" Grid.Column="0"
-                  ItemsSource="{Binding}"/>
+        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DataGrid1"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" />
+                <DataGridTextColumn Header="Encoding" Binding="{Binding Encoding}" />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Window>

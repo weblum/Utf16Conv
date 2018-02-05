@@ -10,6 +10,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Utf16Conv.Annotations;
+// ReSharper disable UnusedMember.Global
 
 namespace Utf16Conv
 {
@@ -42,8 +43,10 @@ namespace Utf16Conv
 			}
 		}
 
+		public string FullPath { get; set; }
+
 		[NotifyPropertyChangedInvocator]
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}

@@ -30,7 +30,8 @@ namespace Utf16Conv
 				FileViewModel fileVm = new FileViewModel
 				{
 					FileName = Path.GetFileName(file),
-					Encoding = encoding.ToString()
+					Encoding = encoding.ToString(),
+					FullPath = file
 				};
 				Add(fileVm);
 			}
