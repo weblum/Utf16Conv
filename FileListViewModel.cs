@@ -13,7 +13,7 @@ using AutoIt.Common;
 
 namespace Utf16Conv
 {
-	internal class FileListViewModel : ObservableCollection<FileViewModel>
+	public class FileListViewModel : ObservableCollection<FileViewModel>
 	{
 		private const SearchOption Top = SearchOption.TopDirectoryOnly;
 

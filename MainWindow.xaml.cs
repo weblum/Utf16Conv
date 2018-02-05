@@ -9,29 +9,45 @@
 
 using System;
 using System.Collections;
-using System.IO;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
+using Utf16Conv.Annotations;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace Utf16Conv
 {
-	public partial class MainWindow // : Window
+	public partial class MainWindow : Window, INotifyPropertyChanged
 	{
-		private readonly FileListViewModel vm = new FileListViewModel();
+		private string directoryPath;
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			DataContext = vm;
+			DataContext = this;
+		}
+
+		public FileListViewModel Vm { get; } = new FileListViewModel();
+
+		public string DirectoryPath
+		{
+			get => directoryPath;
+			private set
+			{
+				if (Equals(directoryPath, value)) return;
+				directoryPath = value;
+				OnPropertyChanged();
+			}
 		}
 
 		private void ChooseDirectory_OnClick(object sender, RoutedEventArgs e)
 		{
 			try
 			{
-				string directoryPath = UserPath.GetDirectory();
-				if (directoryPath == null)
+				DirectoryPath = UserPath.GetDirectory();
+				if (DirectoryPath == null)
 					return;
-				vm.Load(directoryPath);
+				Vm.Load(DirectoryPath);
 			}
 			catch (Exception x)
 			{
@@ -42,18 +58,30 @@ namespace Utf16Conv
 		private void ConvertFiles_OnClick(object sender, RoutedEventArgs e)
 		{
 			IList items = DataGrid1.SelectedItems;
-			StringWriter w = new StringWriter();
 
-			w.WriteLine("These are the files you selected to convert:\r\n");
-			foreach (FileViewModel item in items)
-				w.WriteLine($"{item.FullPath}");
-
-			MessageBox.Show(w.ToString(), Title);
+			try
+			{
+				foreach (FileViewModel fvm in items)
+					Transcoder.Translate(fvm.FullPath);
+				Vm.Load(DirectoryPath);
+			}
+			catch (Exception x)
+			{
+				MessageBox.Show(x.Message, Title);
+			}
 		}
 
 		private void Exit_OnClick(object sender, RoutedEventArgs e)
 		{
 			Close();
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[NotifyPropertyChangedInvocator]
+		private void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

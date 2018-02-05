@@ -62,6 +62,7 @@
     <Compile Include="FileViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ThirdParty\TextEncodingDetect.cs" />
+    <Compile Include="Transcoder.cs" />
     <Compile Include="UserPath.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

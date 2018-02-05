@@ -17,6 +17,7 @@
     <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         
@@ -32,9 +33,12 @@
             </MenuItem>
         </Menu>
         
-        <DataGrid Grid.Row="1" Grid.Column="0" x:Name="DataGrid1"
+        <TextBox Grid.Row="1" Grid.Column="0" Margin="0 4"
+                 Text="{Binding DirectoryPath, Mode=OneWay}" IsReadOnly="True" Background="#FFEEEEEE"/>
+        
+        <DataGrid Grid.Row="2" Grid.Column="0" x:Name="DataGrid1"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding}">
+                  ItemsSource="{Binding Path=Vm}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="File Name" Binding="{Binding FileName}" />
                 <DataGridTextColumn Header="Encoding" Binding="{Binding Encoding}" />
